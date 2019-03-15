@@ -1,0 +1,18 @@
+$breakpoints: (
+  'xxl': '(max-width: 1600px)',
+  'xl': '(max-width: 1200px)',
+  'lg': '(max-width: 992px)',
+  'md': '(max-width: 768px)',
+  'sm' : '(max-width: 576px)',
+  'xs': '(max-width: 480px)'
+);
+
+@mixin mq($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and #{map-get($breakpoints, $breakpoint)} {
+      @content;
+    }
+  } @else {
+    @warn 'No value could be found for #{$breakpoint}'
+  }
+}
