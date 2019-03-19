@@ -21,7 +21,6 @@ class SideNav extends Component {
   }
 
   render() {
-    console.log("hi", this.props.location);
     return (
       <Sider
         collapsible
@@ -49,9 +48,9 @@ class SideNav extends Component {
             </Link>
           </Menu.Item>
           <Menu.Item key="9">
-            <Link to="/diary">
+            <Link to="/journal">
               <Icon type="form" />
-              <span>Diary</span>
+              <span>Journal</span>
             </Link>
           </Menu.Item>
           <SubMenu

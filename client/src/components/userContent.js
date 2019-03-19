@@ -6,7 +6,7 @@ import SideNav from './sidenav';
 
 import Dashboard from './routes/dashboard/index';
 import Recipes from './routes/recipes/index';
-import Diary from './routes/diary/index';
+import Journal from './routes/journal/index';
 
 const { Content, Footer, } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -22,7 +22,7 @@ class UserContent extends React.Component {
             <Switch>
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/recipes" component={Recipes} />
-              <Route path="/diary" component={Diary} />
+              <Route path="/journal" component={Journal} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

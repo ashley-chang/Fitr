@@ -3,7 +3,7 @@ import { PageHeader } from 'antd';
 
 import TextEditor from './textEditor';
 
-class Diary extends Component {
+class Journal extends Component {
   constructor(props) {
     super(props);
 
@@ -12,12 +12,12 @@ class Diary extends Component {
   render() {
     return (
       <div>
-        <PageHeader title="Diary" />
-        <TextEditor placeholder="Dear Diary,"/>
+        <PageHeader title="Journal" />
+        <TextEditor />
       </div>
 
     );
   }
 }
 
-export default Diary;
+export default Journal;
