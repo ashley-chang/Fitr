@@ -14,6 +14,7 @@ class Journal extends Component {
       <div>
         <PageHeader title="Journal" />
         <TextEditor />
+        
       </div>
 
     );
