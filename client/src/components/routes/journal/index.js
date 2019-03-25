@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PageHeader } from 'antd';
 
-import TextEditor from './textEditor';
+import JournalEditContainer from './journalEditContainer';
 
 class Journal extends Component {
   constructor(props) {
@@ -13,8 +13,8 @@ class Journal extends Component {
     return (
       <div>
         <PageHeader title="Journal" />
-        <TextEditor />
-        
+        <JournalEditContainer />
+
       </div>
 
     );

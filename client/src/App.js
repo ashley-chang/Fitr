@@ -8,6 +8,7 @@ import UserContent from './components/userContent';
 import Register from './components/routes/register';
 import Login from './components/routes/login';
 
+import './ant.less';
 import './App.scss';
 
 // Splash landing page
