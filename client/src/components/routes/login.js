@@ -6,11 +6,6 @@ import axios from 'axios';
 class Login extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   email: '',
-    //   password: ''
-    // }
-    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -42,25 +37,6 @@ class Login extends Component {
         }).catch((err) => {
           console.log(`Error: ${err}`);
         })
-        // console.log('Received values of form: ', values);
-        // console.log('login form email: ' + this.state.email);
-        // axios.post('/login', {
-        //   email: this.state.email,
-        //   password: this.state.password
-        // }).then((res) => {
-        //   // Data went through -- either signup successful or duplicate email
-        //   if (!res.data.error) {
-        //     console.log('Successfully logged in');
-        //     // set state as logged in (through function given in props)
-        //     this.props.login(res.data.user.email);
-        //     // redirect to res.data.redirectUrl
-        //     this.props.history.push("/");
-        //   } else {
-        //     console.log('Invalid Credentials');
-        //   }
-        // }).catch((err) => {
-        //   console.log(`Error: ${err}`)
-        // });
       }
     });
   }
@@ -107,26 +83,7 @@ class Login extends Component {
         </Form.Item>
       </Form>
     );
-    // return (
-    //   <div>
-    //     <h2>Login</h2>
-    //     <form>
-    //       <label htmlFor="email">email</label>
-    //       <input type="text"
-    //             name="email"
-    //             id="email"
-    //             value={this.state.email}
-    //             onChange={this.handleChange} />
-    //       <label htmlFor="password">Password</label>
-    //       <input type="password"
-    //             name="password"
-    //             id="password"
-    //             value={this.state.password}
-    //             onChange={this.handleChange} />
-    //       <button onClick={this.handleSubmit}>Submit</button>
-    //     </form>
-    //   </div>
-    // );
+
   }
 }
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 import PrivateRoute from './components/privateRoute';
 import UserContent from './components/userContent';
-// import PublicHome from './components/routes/publicHome';
+import PublicHome from './components/routes/publicHome';
 import Register from './components/routes/register';
 import Login from './components/routes/login';
 
@@ -18,7 +18,7 @@ import './App.scss';
 class App extends Component {
   constructor(props) {
     super();
-    this.state = { isLoggedIn: true, user: null }
+    this.state = { isLoggedIn: false, user: null }
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
   }
@@ -36,14 +36,18 @@ class App extends Component {
     this.setState({ isLoggedIn: false });
   }
 
+  // Home page:
+  // - If not logged in, show public home page
+  // - Else, show dashboard
   render() {
     return(
       <Router>
-        <div>
+        <Switch>
           <Route exact path="/login" render={(props) => <Login {...props} login={this.login}/>} />
           <Route exact path="/register" component={Register}/>
-          <PrivateRoute path="/" isLoggedIn={this.state.isLoggedIn} component={UserContent} />
-        </div>
+          <Route exact path="/" component={PublicHome} />
+          <PrivateRoute path="/:userContent" isLoggedIn={this.state.isLoggedIn} component={UserContent} />
+        </Switch>
       </Router>
     );
   }
