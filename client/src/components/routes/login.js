@@ -30,7 +30,7 @@ class Login extends Component {
             console.log('Successfully logged in');
             // set state as logged in (through function given in props)
             this.props.login(res.data.user.email);
-            this.props.history.push("/");
+            this.props.history.push("/dashboard");
           } else {
             console.log('Invalid credentials');
           }

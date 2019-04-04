@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Layout, Menu, } from 'antd';
 import { Route, Switch } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ import Journal from './routes/journal/index';
 const { Content, Footer, } = Layout;
 const SubMenu = Menu.SubMenu;
 
-class UserContent extends React.Component {
+class UserContent extends Component {
 
   render() {
     return (

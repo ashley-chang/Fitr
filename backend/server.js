@@ -62,5 +62,6 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/', require('./routes/index'));
+app.use('/journal-entries', require('./routes/journal'));
 
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));

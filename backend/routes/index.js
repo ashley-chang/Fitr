@@ -8,14 +8,14 @@ router.get('/', (req, res) => {
 });
 
 router.get('/dashboard', isLoggedIn, (req, res) => {
-  return res.status(200).json({
-    user: req.user
-  });
+  // return res.status(200).json({
+  //   user: req.user
+  // });
 });
 
 router.post('/login', passport.authenticate('local.login'), (req, res) => {
   res.status(200).json({ user: req.user });
-  console.log('hello');
+  console.log(req.user);
 });
 
 router.post('/register', passport.authenticate('local.register'),
