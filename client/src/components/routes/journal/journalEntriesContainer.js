@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import { List } from 'antd';
+import { List, Checkbox, Button } from 'antd';
 import axios from 'axios';
 
 /*
   TODO:
     0 On mount, load the user's journal entries
-    - Add link/buttons to view/edit/delete journal entries
+    - Add sortable option
+    - Make into checklist. Selectable delete, available for bulk delete
+    - Each entry has a view/edit button, singular only
 */
 
 class JournalEntriesContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      journalEntries: []
+      journalEntries: [],
+      bulkEdit: false
     }
   }
 
   // deriveStateFromProps?
+  // probably move this to index
   componentDidMount() {
     axios.get('/journal-entries')
       .then((res) => {
+          console.log(res.data);
           const journalEntries = res.data; // expect an array
           this.setState({ journalEntries })
       })
@@ -27,21 +32,21 @@ class JournalEntriesContainer extends Component {
   }
 
   render() {
-
     return (
       <List
         itemLayout="horizontal"
         dataSource={this.state.journalEntries}
         renderItem={item => (
-          <List.Item>
-            <List.Item.Meta
-              title={item.title}
-            />
-      </List.Item>
-    )}
-  />
+          <List.Item
+            actions={[
+              <Button type="primary" onClick={() => this.props.handleView(item.entryId)} >View</Button>,
+              <Button type="Default"onClick={() => this.props.handleEdit(item.entryId)}>Edit</Button>]}>
+            <List.Item.Meta title={item.title} />
+          </List.Item>
+        )}
+      />
     );
   }
 }
 
-export default JournalEntriesContainer
+export default JournalEntriesContainer;

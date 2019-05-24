@@ -10,7 +10,7 @@ import InputField from './../../common/inputField';
 /*
   TODO:
     - Add exit/save confirmation modal
-    - Save to database
+    0 Save to database
     - Edit existing entries
     - Parent container pass post id through props
     - Disable save button if no changes
@@ -67,45 +67,49 @@ class JournalEditContainer extends Component {
 
   // Change handler for title
   handleTitleChange(e) {
-    console.log('title', e.target.value);
     this.setState({ title: e.target.value });
   }
 
   // Change handler for Quill editor -- returns value of text content, not event
   handleContentChange(value) {
-    console.log(typeof this.state.content);
     this.setState({ content: value });
   }
 
   handleSave() {
-    // If editing existing entry, save/update to the same id.
-    // Otherwise, create new entry.
-    if (this.state.entryId) {
-      axios.patch(`/journal-entries/${this.state.entryId}`, {
-        title: this.state.title,
-        content: this.state.content
-      }).then(res => {
-        console.log('Axios: Journal entry updated!');
-        // Do something with antd notification
-      }).catch(err => {
-        console.log(err);
-        // Do something with antd notification
-      });
-    } else {
-      axios.post('/journal-entries', {
-        title: this.state.title,
-        content: this.state.content
-      }).then(res => {
-        console.log('Axios: New journal entry saved!');
-        this.setState({
-          entryId: res.data.entryId
-        });
-        // Do something with antd notification
-      }).catch(err => {
-        console.log(err);
-        // Do something with antd notification
-      });
+    // Save entry. If handleSave returns a new entryID, store it in the current editor.
+    let entryId = this.props.handleSave(this.state.title, this.state.content, this.state.entryId);
+    if (entryId) {
+      this.setState({ entryId });
     }
+
+    // // If editing existing entry, save/update to the same id.
+    // // Otherwise, create new entry.
+    // if (this.state.entryId) {
+    //   axios.patch(`/journal-entries/${this.state.entryId}`, {
+    //     title: this.state.title,
+    //     content: this.state.content
+    //   }).then(res => {
+    //     console.log('Axios: Journal entry updated!');
+    //     // Do something with antd notification
+    //   }).catch(err => {
+    //     console.log(err);
+    //     // Do something with antd notification
+    //   });
+    // } else {
+    //   axios.post('/journal-entries', {
+    //     title: this.state.title,
+    //     content: this.state.content
+    //   }).then(res => {
+    //     console.log('Axios: New journal entry saved!');
+    //     this.setState({
+    //       entryId: res.data.entryId
+    //     });
+    //     // Do something with antd notification
+    //   }).catch(err => {
+    //     console.log(err);
+    //     // Do something with antd notification
+    //   });
+    // }
   }
 
   render() {
@@ -131,7 +135,7 @@ class JournalEditContainer extends Component {
         </Row>
         <Row type="flex" justify="start">
           <Col span={24}>
-            <Button type="primary" onClick={ this.handleSave }>Save</Button>
+            <Button type="primary" onClick={ ()=> this.handleSave(this.state.entryId) }>Save</Button>
           </Col>
         </Row>
       </div>

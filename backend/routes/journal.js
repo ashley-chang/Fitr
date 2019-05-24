@@ -10,9 +10,13 @@ const JournalEntry = require('../models/journal-entry');
 // Fetch all journal entries
 router.get('/', (req, res) => {
   // Retrieve entries from user
+  console.log('router.get journalentries');
+  console.log('req user id', req.user._id);
   JournalEntry.find({ userId: req.user._id }).exec().then((entries) => {
-    return res.status.send(entries);
+    return res.status(200).send(entries);
   }).catch((err) => {
+    console.log('router.get journalentries');
+    console.log('req user id', req.user._id);
     console.log(err);
     return res.status(500).end();
   });

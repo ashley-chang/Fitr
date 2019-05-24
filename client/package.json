@@ -10,7 +10,6 @@
     "craco-antd": "^1.10.0",
     "craco-less": "^1.7.0",
     "immutable": "^4.0.0-rc.12",
-    "less": "^3.9.0",
     "node-sass": "^4.11.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -34,9 +33,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "peerDependencies": {
-    "less": "^2.3.7"
-  },
   "devDependencies": {
     "css-loader": "^2.1.1",
     "less-loader": "^4.1.0",
