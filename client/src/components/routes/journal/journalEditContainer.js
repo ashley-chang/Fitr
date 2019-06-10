@@ -31,9 +31,9 @@ class JournalEditContainer extends Component {
 
   componentDidMount() {
     // If editing existing journal, retrieve data using info in this.props.entryId
-    if (this.props.entryId) {
-        this.setState({ entryId: this.props.entryId })
-        axios.get(`journal/${this.props.entryId}`)
+    if (this.props.match.params.id) {
+        this.setState({ entryId: this.props.match.params.id });
+        axios.get(`/journal-entries/${this.props.match.params.id}`)
           .then((res) => {
             const entry = res.data;
             this.setState({
@@ -43,6 +43,7 @@ class JournalEditContainer extends Component {
           }).catch((err) => {
             console.log(err);
           });
+
     } else {
       this.setState({ title: 'Untitled'})
     }
@@ -81,35 +82,6 @@ class JournalEditContainer extends Component {
     if (entryId) {
       this.setState({ entryId });
     }
-
-    // // If editing existing entry, save/update to the same id.
-    // // Otherwise, create new entry.
-    // if (this.state.entryId) {
-    //   axios.patch(`/journal-entries/${this.state.entryId}`, {
-    //     title: this.state.title,
-    //     content: this.state.content
-    //   }).then(res => {
-    //     console.log('Axios: Journal entry updated!');
-    //     // Do something with antd notification
-    //   }).catch(err => {
-    //     console.log(err);
-    //     // Do something with antd notification
-    //   });
-    // } else {
-    //   axios.post('/journal-entries', {
-    //     title: this.state.title,
-    //     content: this.state.content
-    //   }).then(res => {
-    //     console.log('Axios: New journal entry saved!');
-    //     this.setState({
-    //       entryId: res.data.entryId
-    //     });
-    //     // Do something with antd notification
-    //   }).catch(err => {
-    //     console.log(err);
-    //     // Do something with antd notification
-    //   });
-    // }
   }
 
   render() {

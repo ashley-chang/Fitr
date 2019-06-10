@@ -15,12 +15,10 @@ router.get('/dashboard', isLoggedIn, (req, res) => {
 
 router.post('/login', passport.authenticate('local.login'), (req, res) => {
   res.status(200).json({ user: req.user });
-  console.log(req.user);
 });
 
 router.post('/register', passport.authenticate('local.register'),
   (req, res) => {
-    console.log(req.user);
     res.status(200);
 });
 

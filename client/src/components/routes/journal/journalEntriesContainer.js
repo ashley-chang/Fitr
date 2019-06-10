@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { List, Checkbox, Button } from 'antd';
+
 import axios from 'axios';
 
 /*
@@ -25,8 +27,7 @@ class JournalEntriesContainer extends Component {
     axios.get('/journal-entries')
       .then((res) => {
           console.log(res.data);
-          const journalEntries = res.data; // expect an array
-          this.setState({ journalEntries })
+          this.setState({ journalEntries: res.data }); // expect an array
       })
       .catch(err => console.log('Could not fetch journal entries', err));
   }
@@ -40,7 +41,7 @@ class JournalEntriesContainer extends Component {
           <List.Item
             actions={[
               <Button type="primary" onClick={() => this.props.handleView(item.entryId)} >View</Button>,
-              <Button type="Default"onClick={() => this.props.handleEdit(item.entryId)}>Edit</Button>]}>
+              <Button type="Default"><Link to={`/journal/edit/${item._id}`}>Edit</Link></Button>]}>
             <List.Item.Meta title={item.title} />
           </List.Item>
         )}

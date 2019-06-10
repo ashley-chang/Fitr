@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { PageHeader, Typography } from 'antd';
+import React, { Component, Fragment } from 'react';
+import { PageHeader, Typography} from 'antd';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 
 import JournalEditContainer from './journalEditContainer';
@@ -10,6 +11,9 @@ const { Title } = Typography;
 class Journal extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activeEntry: null
+    }
     this.handleView = this.handleView.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -21,7 +25,13 @@ class Journal extends Component {
   }
 
   handleEdit(entryId) {
-
+    // console.log('Edit mode');
+    // console.log(this.state);
+    // console.log(entryId);
+    // this.setState({
+    //   currentMode : EDIT,
+    //   activeEntry : entryId
+    // });
   }
 
   handleDelete(entryIds) {
@@ -54,16 +64,20 @@ class Journal extends Component {
     }
   }
 
+
+// remember to set active entry back to null when on manage.
   render() {
     return (
       <div>
         <PageHeader title="Journal" />
-        <JournalEditContainer handleSave={this.handleSave} />
-        <Title level={2}>My Journal Entries</Title>
-        <JournalEntriesContainer
-          handleView={this.handleView}
-          handleEdit={this.handleEdit}
-          handleDelete={this.handleDelete} />
+        <Fragment>
+          <Title level={2}>My Journal Entries</Title>
+          <JournalEntriesContainer
+            handleView={this.handleView}
+            handleEdit={this.handleEdit}
+            handleDelete={this.handleDelete} />
+        </Fragment>
+        <Route path="/journal/edit/:id" component={JournalEditContainer} />
       </div>
 
     );
