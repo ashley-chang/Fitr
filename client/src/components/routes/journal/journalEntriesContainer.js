@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { List, Checkbox, Button } from 'antd';
+import { PageHeader, Typography, List, Checkbox, Button } from 'antd';
 
 import axios from 'axios';
+
+const { Title } = Typography;
 
 /*
   TODO:
@@ -34,18 +36,21 @@ class JournalEntriesContainer extends Component {
 
   render() {
     return (
-      <List
-        itemLayout="horizontal"
-        dataSource={this.state.journalEntries}
-        renderItem={item => (
-          <List.Item
-            actions={[
-              <Button type="primary" onClick={() => this.props.handleView(item.entryId)} >View</Button>,
-              <Button type="Default"><Link to={`/journal/edit/${item._id}`}>Edit</Link></Button>]}>
-            <List.Item.Meta title={item.title} />
-          </List.Item>
-        )}
-      />
+      <Fragment>
+        <Title level={2}>My Journal Entries</Title>
+        <List
+          itemLayout="horizontal"
+          dataSource={this.state.journalEntries}
+          renderItem={item => (
+            <List.Item
+              actions={[
+                <Button type="primary" onClick={() => this.props.handleView(item.entryId)} >View</Button>,
+                <Button type="Default"><Link to={`/journal/edit/${item._id}`}>Edit</Link></Button>]}>
+              <List.Item.Meta title={item.title} />
+            </List.Item>
+          )}
+        />
+      </Fragment>
     );
   }
 }

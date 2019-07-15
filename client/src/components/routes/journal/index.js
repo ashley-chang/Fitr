@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { PageHeader, Typography} from 'antd';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
@@ -64,20 +64,13 @@ class Journal extends Component {
     }
   }
 
-
-// remember to set active entry back to null when on manage.
   render() {
     return (
       <div>
         <PageHeader title="Journal" />
-        <Fragment>
-          <Title level={2}>My Journal Entries</Title>
-          <JournalEntriesContainer
-            handleView={this.handleView}
-            handleEdit={this.handleEdit}
-            handleDelete={this.handleDelete} />
-        </Fragment>
-        <Route path="/journal/edit/:id" component={JournalEditContainer} />
+        <Route exact path="/journal" render={(props) => <JournalEntriesContainer {...props} handleView={this.handleView} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />}
+        />
+        <Route path="/journal/edit/:id" component={ JournalEditContainer } />
       </div>
 
     );

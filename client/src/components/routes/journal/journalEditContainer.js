@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ReactQuill, { Quill, Toolbar } from 'react-quill';
 import { Button, Row, Col, Alert } from 'antd';
 
@@ -38,7 +39,7 @@ class JournalEditContainer extends Component {
             const entry = res.data;
             this.setState({
               title: entry.title,
-              content: entry.content
+              content: entry.content || ''
             })
           }).catch((err) => {
             console.log(err);
@@ -88,6 +89,11 @@ class JournalEditContainer extends Component {
     // TODO: If new entry, use Untitled, else retrieve title
     return(
       <div className="journal-edit">
+        <Row>
+          <Col span={4}>
+            <Link to="/journal">Back</Link>
+          </Col>
+        </Row>
         <Row type="flex" justify="start">
           <Col span={24}>
             <InputField onChange={ this.handleTitleChange }
